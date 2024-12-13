@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br>
+
+<head>
+    <meta charset=" UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRUD de Body builders</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/app.js"></script>
+</head>
+
+<body onload="carregarClientes(); carregarAcademias(); carregarEstilos()">
+    <header>
+        <div>
+            <img src="images/logo.png" alt="Logo do CRUD de Body Builders" width="60px">
+            <h1>BODY BUILDERS</h1>
+        </div>
+        <div id="right">
+            <input type="text" name="busca" id="busca" placeholder="Busca">
+            <input type="button" value="Buscar" id="buscar" onclick="Filtrar()">
+            <button class="adicionar" onclick="adicionar()">Adicionar Body-Builder</button>
+            <button class="adicionar" onclick="adicionarEstilo()">Adicionar Estilo</button>
+        </div>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th onclick="ordenarTabela('id')">Id</th>
+                <th onclick="ordenarTabela('cpf')">CPF</th>
+                <th onclick="ordenarTabela('nome')">Nome</th>
+                <th onclick="ordenarTabela('peso')">Peso</th>
+                <th onclick="ordenarTabela('altura')">Altura</th>
+                <th onclick="ordenarTabela('dataNascimento')">Data de Nascimento</th>
+                <th onclick="ordenarTabela('celular')">Celular</th>
+                <th onclick="ordenarTabela('imc')">IMC</th>
+                <th onclick="ordenarTabela('gym')">Academia</th>
+                <th onclick="ordenarTabela('estilo')">Estilo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody id="tbody">
+        </tbody>
+    </table>
+    <div id="paginacao" style="text-align: center; margin: 10px 0;"></div>
+    <div id="modal">
+        <form id="form" onsubmit="return salvar()">
+            <div class="form-group">
+                <label>CPF</label>
+                <input type="text" name="cpf" id="cpf" maxlength="14" onkeyup="aplicarMascara(this, '000.000.000-00')"
+                    placeholder="000.000.000-00">
+            </div>
+            <div class="form-group">
+                <label>Nome (completo)</label>
+                <input type="text" name="nome" id="nome" placeholder="Nome completo">
+            </div>
+            <div class="form-group">
+                <label>Peso (kg)</label>
+                <input type="number" name="peso" id="peso" placeholder="Peso em kg">
+            </div>
+            <div class="form-group">
+                <label>Altura (cm)</label>
+                <input type="text" name="altura" id="altura" placeholder="Altura em cm">
+            </div>
+            <div class="form-group">
+                <label>Data de Nascimento</label>
+                <input type="date" name="dataNascimento" id="dataNascimento" placeholder="Data de nascimento">
+            </div>
+            <div class="form-group">
+                <label>Celular</label>
+                <input type="text" name="celular" id="celular" maxlength="15"
+                    onkeyup="aplicarMascara(this, '(00) 00000-0000')" placeholder="(00) 00000-0000">
+            </div>
+            <div class="form-group">
+                <label>Academia</label>
+                <select id="academia">
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Estilo</label>
+                <select id="estilo">
+                </select>
+            </div>
+            <input type="submit" id="save" value="Salvar">
+            <input type="button" id="cancel" value="Cancelar" onclick="ocultarModal()">
+        </form>
+    </div>
+    <div id="modalEstilo">
+        <form id="formEstilo" onsubmit="return salvarEstilo()">
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" name="nome" id="nomeEstilo" placeholder="Nome do estilo">
+            </div>
+            <input type="submit" id="save" value="Salvar Estilo">
+            <input type="button" id="cancel" value="Cancelar" onclick="ocultarModalEstilo()">
+        </form>
+    </div>
+    <img id="loading" src="images/loading gif.gif" alt="icone circular de carregamento de página" width="80px">
+</body>
+
+</html>
